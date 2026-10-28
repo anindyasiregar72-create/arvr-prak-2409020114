@@ -2,19 +2,93 @@
 <html lang="id">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Praktikum 1 - Scene Pertama</title>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dunia 3D <arvr-prak-2409020114> - Anindya</title>
+
+    <!-- Library A-Frame -->
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .judul {
+            position: fixed;
+            top: 12px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            text-align: center;
+            color: #17365d;
+            pointer-events: none;
+        }
+
+        .judul h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .judul p {
+            margin: 6px;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
-    <a-scene>
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#E4F527"></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#35F527"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#27F5F5"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="6" height="6" color="#E027F5"></a-plane>
-        <a-sky color="#8E27F5"></a-sky>
+    <div class="judul">
+        <h2>DUNIA 3D <arvr-prak-2409020114></h2>
+        <p>Praktikum AR/VR - Pertemuan 1</p>
+    </div>
+
+    <a-scene background="color: #B9E7FF">
+
+        <!-- LANGIT -->
+        <a-sky color="#B9E7FF"></a-sky>
+
+        <!-- LANTAI -->
+        <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#80CFA0">
+        </a-plane>
+
+        <!-- KUBUS -->
+        <a-box position="-2 1 -4" width="1.3" height="1.3" depth="1.3" color="#FF6B6B" shadow>
+        </a-box>
+
+        <!-- BOLA -->
+        <a-sphere position="0 1.2 -4" radius="0.8" color="#FFD166" shadow>
+        </a-sphere>
+
+        <!-- TABUNG -->
+        <a-cylinder position="2 1 -4" radius="0.55" height="1.6" color="#6C63FF" shadow>
+        </a-cylinder>
+
+        <!-- KERUCUT -->
+        <a-cone position="-1.5 0.8 -6" radius-bottom="0.8" height="1.6" color="#FF9F68" shadow>
+        </a-cone>
+
+        <!-- CINCIN BERANIMASI -->
+        <a-torus position="1.5 1.5 -6" radius="0.8" radius-tubular="0.12" color="#E84393" animation="property: rotation;
+                 to: 0 360 0;
+                 loop: true;
+                 dur: 4000;
+                 easing: linear" shadow>
+        </a-torus>
+
+        <!-- NAMA DAN NIM -->
+        <a-text value="Anindya Fadhilah Fauzi Siregar" position="-2.7 3 -4" align="center" color="#17365D" width="6">
+        </a-text>
+
+        <a-text value="NIM: 2408020114" position="-1.5 2.5 -4" align="center" color="#17365D" width="4">
+        </a-text>
+
+        <!-- KAMERA DAN KONTROL -->
+        <a-entity position="0 0 0">
+            <a-camera position="0 1.6 0"></a-camera>
+        </a-entity>
+
     </a-scene>
 </body>
 
