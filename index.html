@@ -4,92 +4,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dunia 3D <arvr-prak-2409020114> - Anindya</title>
 
-    <!-- Library A-Frame -->
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <title>AR Tugas Individu - Praktikum Minggu 2</title>
+
+    <!-- Library A-Frame untuk objek dan scene 3D -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <!-- Library AR.js untuk mendeteksi marker melalui kamera -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
     <style>
         body {
             margin: 0;
+            overflow: hidden;
             font-family: Arial, sans-serif;
         }
 
-        .judul {
+        .header {
             position: fixed;
             top: 12px;
             left: 0;
             right: 0;
             z-index: 10;
             text-align: center;
-            color: #17365d;
+            color: white;
+            background: rgba(16, 35, 75, 0.82);
+            padding: 12px 8px;
             pointer-events: none;
         }
 
-        .judul h2 {
-            margin: 0;
+        .header h1 {
             font-size: 20px;
+            margin: 0 0 5px;
         }
 
-        .judul p {
-            margin: 6px;
-            font-size: 13px;
+        .header p {
+            font-size: 12px;
+            margin: 3px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            background: rgba(16, 35, 75, 0.8);
+            padding: 9px;
+            border-radius: 8px;
+            font-size: 12px;
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="judul">
-        <h2>DUNIA 3D <arvr-prak-2409020114></h2>
-        <p>Praktikum AR/VR - Pertemuan 1</p>
+
+    <!-- IDENTITAS TUGAS -->
+    <div class="header">
+        <h1>AR TUGAS INDIVIDU</h1>
+        <p>Praktikum AR/VR - Minggu 2</p>
+        <p>Objek 3D | Material | Lighting | Kamera | Transformasi</p>
     </div>
 
-    <a-scene background="color: #B9E7FF">
+    <!-- SCENE AR -->
+    <a-scene embedded renderer="antialias: true; colorManagement: true"
+        arjs="sourceType: webcam; debugUIEnabled: false;">
 
-        <!-- LANGIT -->
-        <a-sky color="#B9E7FF"></a-sky>
+        <!-- ================================================== -->
+        <!-- 1. PENCAHAYAAN / LIGHTING                          -->
+        <!-- ================================================== -->
 
-        <!-- LANTAI -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="200" height="200" color="#80CFA0">
-        </a-plane>
+        <!-- Ambient light: memberi cahaya dasar ke seluruh objek -->
+        <a-light type="ambient" color="#FFFFFF" intensity="0.7">
+        </a-light>
 
-        <!-- KUBUS -->
-        <a-box position="-2 1 -4" width="1.3" height="1.3" depth="1.3" color="#FF6B6B" shadow>
-        </a-box>
+        <!-- Directional light: cahaya dari arah tertentu -->
+        <a-light type="directional" color="#FFFFFF" intensity="1.1" position="1 3 2">
+        </a-light>
 
-        <!-- BOLA -->
-        <a-sphere position="0 1.2 -4" radius="0.8" color="#FFD166" shadow>
-        </a-sphere>
+        <!-- ================================================== -->
+        <!-- 2. MARKER HIRO                                     -->
+        <!-- Seluruh objek di dalam marker mengikuti marker     -->
+        <!-- ================================================== -->
 
-        <!-- TABUNG -->
-        <a-cylinder position="2 1 -4" radius="0.55" height="1.6" color="#6C63FF" shadow>
-        </a-cylinder>
+        <a-marker preset="hiro">
 
-        <!-- KERUCUT -->
-        <a-cone position="-1.5 0.8 -6" radius-bottom="0.8" height="1.6" color="#FF9F68" shadow>
-        </a-cone>
+            <!-- BIDANG DASAR -->
+            <a-plane position="0 0 0" rotation="-90 0 0" width="2.5" height="2.5" material="
+          color: #DDF4FF;
+          opacity: 0.85;
+          transparent: true;
+          roughness: 0.9;
+          metalness: 0.0">
+            </a-plane>
 
-        <!-- CINCIN BERANIMASI -->
-        <a-torus position="1.5 1.5 -6" radius="0.8" radius-tubular="0.12" color="#E84393" animation="property: rotation;
-                 to: 0 360 0;
-                 loop: true;
-                 dur: 4000;
-                 easing: linear" shadow>
-        </a-torus>
+            <!-- ================================================== -->
+            <!-- OBJEK 1: KUBUS                                    -->
+            <!-- ================================================== -->
 
-        <!-- NAMA DAN NIM -->
-        <a-text value="Anindya Fadhilah Fauzi Siregar" position="-2.7 3 -4" align="center" color="#17365D" width="6">
-        </a-text>
+            <a-box position="-0.65 0.35 0" rotation="0 25 0" scale="0.7 0.7 0.7" material="
+          color: #3478F6;
+          roughness: 0.45;
+          metalness: 0.15" shadow>
+            </a-box>
 
-        <a-text value="NIM: 2408020114" position="-1.5 2.5 -4" align="center" color="#17365D" width="4">
-        </a-text>
+            <!-- Label kubus -->
+            <a-text value="KUBUS" position="-0.65 0.85 0" rotation="-90 0 0" align="center" color="#163A70" width="1.5">
+            </a-text>
 
-        <!-- KAMERA DAN KONTROL -->
-        <a-entity position="0 0 0">
-            <a-camera position="0 1.6 0"></a-camera>
-        </a-entity>
+            <!-- ================================================== -->
+            <!-- OBJEK 2: BOLA                                     -->
+            <!-- ================================================== -->
+
+            <a-sphere position="0 0.4 0" radius="0.35" scale="1 1 1" material="
+          color: #FFB52E;
+          roughness: 0.3;
+          metalness: 0.3">
+            </a-sphere>
+
+            <!-- Label bola -->
+            <a-text value="BOLA" position="0 0.85 0" rotation="-90 0 0" align="center" color="#8C4B00" width="1.2">
+            </a-text>
+
+            <!-- ================================================== -->
+            <!-- OBJEK 3: SILINDER BERPUTAR                        -->
+            <!-- ================================================== -->
+
+            <a-cylinder position="0.65 0.35 0" radius="0.23" height="0.7" scale="1 1 1" material="
+          color: #20A879;
+          roughness: 0.35;
+          metalness: 0.2" animation="
+          property: rotation;
+          to: 0 360 0;
+          dur: 4000;
+          loop: true;
+          easing: linear">
+            </a-cylinder>
+
+            <!-- Label silinder -->
+            <a-text value="SILINDER" position="0.65 0.85 0" rotation="-90 0 0" align="center" color="#075E43"
+                width="1.5">
+            </a-text>
+
+            <!-- ================================================== -->
+            <!-- OBJEK 4: KERUCUT                                  -->
+            <!-- ================================================== -->
+
+            <a-cone position="-0.4 0.3 -0.65" radius-bottom="0.3" radius-top="0.02" height="0.6" rotation="0 0 0"
+                scale="0.85 1 0.85" material="
+          color: #F16B8D;
+          roughness: 0.65;
+          metalness: 0.05">
+            </a-cone>
+
+            <!-- ================================================== -->
+            <!-- OBJEK 5: TORUS / CINCIN                           -->
+            <!-- ================================================== -->
+
+            <a-torus position="0.4 0.45 -0.65" rotation="90 0 0" radius="0.27" radius-tubular="0.07" scale="1 1 1"
+                material="
+          color: #9B6DFF;
+          roughness: 0.25;
+          metalness: 0.35" animation="
+          property: rotation;
+          to: 90 360 0;
+          dur: 5000;
+          loop: true;
+          easing: linear">
+            </a-torus>
+
+            <!-- ================================================== -->
+            <!-- INFORMASI IDENTITAS PADA SCENE                    -->
+            <!-- ================================================== -->
+
+            <a-text value="AR TUGAS INDIVIDU" position="0 0.05 -0.95" rotation="-90 0 0" align="center" color="#163A70"
+                width="2.5">
+            </a-text>
+
+            <a-text value="Anindya Fadhilah Fauzi Siregar" position="0 0.05 -1.12" rotation="-90 0 0" align="center"
+                color="#163A70" width="2.1">
+            </a-text>
+
+            <a-text value="NIM: 2409020114" position="0 0.05 -1.25" rotation="-90 0 0" align="center" color="#163A70"
+                width="1.7">
+            </a-text>
+
+        </a-marker>
+
+        <!-- ================================================== -->
+        <!-- 3. KAMERA AR                                       -->
+        <!-- ================================================== -->
+
+        <!-- AR.js menggunakan kamera perangkat untuk mendeteksi
+         marker dan menampilkan objek virtual di atasnya. -->
+        <a-entity camera></a-entity>
 
     </a-scene>
+
+    <div class="footer">
+        Arahkan kamera ke marker Hiro untuk menampilkan objek 3D.
+    </div>
+
 </body>
 
 </html>
