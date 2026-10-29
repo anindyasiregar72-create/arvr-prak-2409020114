@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Praktikum 1 - Scene Pertama</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('change-color-on-click', {
+            init: function () {
+                var COLORS = ['#4CC309', '#EF2D5E', '#FFC65D', '#7BC8A4', '#FF0000'];
+                this.el.addEventListener('click', function () {
+                    var randomIndex = Math.floor(Math.random() * COLORS.length);
+                    this.setAttribute('material', 'color', COLORS[randomIndex]);
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <a-scene>
+
+        <!-- 1. Tambahkan Kamera & Kursor agar klik mouse berfungsi -->
+        <a-camera position="0 1.6 0">
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        </head>
+
+        <body>
+            <a-scene>
+                <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" change-color-on-click></a-box>
+                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" change-color-on-click></a-sphere>
+                <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"
+                    change-color-on-click></a-cylinder>
+                <a-plane position="0 0 -4" rotation="-90 0 0" width="6" height="6" color="#7BC8A4"
+                    change-color-on-click></a-plane>
+                <a-sky color="#ECECEC" change-color-on-click></a-sky>
+            </a-scene>
+        </body>
+
+</html>
